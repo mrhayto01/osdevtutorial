@@ -5,17 +5,21 @@
 
 typedef struct _FLAG_STRUCT
 {
+    DWORD64 i;
+    USHORT Test;
     union {
-        UCHAR Flags;
+        USHORT Flags;
         struct {
-            UCHAR Flag1 : 1;
-            UCHAR Flag2 : 1;
-            UCHAR Flag3 : 1;
-            UCHAR Flag4 : 1;
-            UCHAR Flag5 : 1;
-            UCHAR Flag6 : 1;
-            UCHAR Flag7 : 1;
-            UCHAR Flag8 : 1;
+            USHORT Flag1 : 1;
+            USHORT Flag2 : 1;
+            USHORT Flag3 : 1;
+            USHORT Flag4 : 1;
+            USHORT Flag5 : 1;
+            USHORT Flag6 : 1;
+            USHORT Flag7 : 1;
+            USHORT Flag8 : 1;
+            USHORT Flag9 : 1;
+            USHORT UnUsed : 7;
         };
     };
 } FLAG_STRUCT, * PFLAG_STRUCT;
@@ -31,17 +35,17 @@ typedef struct _FLAG_STRUCT
 
 int main()
 {
-    UCHAR flags = 0;                              // 00000000
-    flags = (FLAG1 | FLAG2);                      // 00000011
+    //UCHAR flags = 0;                              // 00000000
+    //flags = (FLAG1 | FLAG2);                      // 00000011
 
-    if (flags & FLAG1)
-        printf("flag1 is enable.\r\n");
+    //if (flags & FLAG1)
+    //    printf("flag1 is enable.\r\n");
 
-    if ((flags & (FLAG1 | FLAG2))== (FLAG1 | FLAG2))
-        printf("flag1 and flag2 are enable.\r\n");
+    //if ((flags & (FLAG1 | FLAG2))== (FLAG1 | FLAG2))
+    //    printf("flag1 and flag2 are enable.\r\n");
 
-    if((flags&7) == 7)
-        printf("flag1, flag2 and flag3 are enable.\r\n");
+    //if((flags&7) == 7)
+    //    printf("flag1, flag2 and flag3 are enable.\r\n");
 
     //-------------------------------------------------------------------------------
 
@@ -51,11 +55,12 @@ int main()
     flagStruct.Flags = 0;
     flagStruct.Flag1 = TRUE;
     flagStruct.Flag2 = TRUE;
+    flagStruct.Flag9 = TRUE;
 
     if (flagStruct.Flag1)
         printf("flag1 is enable.\r\n");
 
-    if (flagStruct.Flag3)
+    if (flagStruct.Flag9)
         printf("flag3 is enable.\r\n");
 
     if (flagStruct.Flag1 & flagStruct.Flag2)
